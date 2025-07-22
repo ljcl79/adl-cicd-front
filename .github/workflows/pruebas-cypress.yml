@@ -1,0 +1,28 @@
+# Nombre del workflow
+name: Pruebas E2E con Cypress
+
+#condiciones del Workflow
+on:
+    push:
+        branches: [ main ]
+        
+#Trabajo a ejecutar
+jobs:
+    ejecute-cypress:
+        runs-on: ubuntu-latest
+
+        steps:
+            #Traer el código a la máquina virtual
+            - name: Bajar el código
+              uses: actions/checkout@v4
+
+            - name: Instalar Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+
+            - name: Instale las dependencias
+              run: npm ci
+
+            - name: Corre Cypress
+              uses: cypress-io/github-action@v6
