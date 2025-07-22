@@ -3,8 +3,6 @@ name: Pruebas E2E con Cypress
 
 #condiciones del Workflow
 on:
-    push:
-        branches: [ main ]
     schedule:
         - cron: '30 5 * * *' # the workflow runs every day at 5:30 UTC.
         
