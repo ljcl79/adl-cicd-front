@@ -1,0 +1,33 @@
+name: Pruebas con Playwright
+
+on:
+    push:
+        branches: [ main ]
+
+jobs:
+    ejecute-playwright:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Instalar node
+              uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+            - name: Bajar el código
+              uses: actions/checkout@v4
+            - name: Instalar las dependencias
+              uses: npm ci
+            - name: Instala los browsers
+              run: npx playwright install --with-deps
+            - name: Ejecuta los test
+              run: npx playwright test
+            - name: Sube el reporte al repositorio
+              uses: actions/upload-artifact@v4
+              with:
+                name: reportes-pruebas
+                path: playwright-report/
+
+                
+            
+            
