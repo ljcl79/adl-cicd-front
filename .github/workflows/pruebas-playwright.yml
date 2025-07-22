@@ -20,6 +20,8 @@ jobs:
               uses: npm ci
             - name: Instala los browsers
               run: npx playwright install --with-deps
+            - name: Levantamos la aplicación
+              run: npm run dev
             - name: Ejecuta los test
               run: npx playwright test
             - name: Sube el reporte al repositorio
